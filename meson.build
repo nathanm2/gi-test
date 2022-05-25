@@ -25,3 +25,9 @@ gnome.generate_gir(libmyhello,
   nsversion: meson.project_version(),
   identifier_prefix: 'My',
   install: true)
+
+gi = dependency('gobject-introspection-1.0')
+
+gir_c = files('gir/gir.c')
+executable('mygir', gir_c,
+  dependencies: [gi])
