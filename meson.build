@@ -21,14 +21,20 @@ executable('hello', hello_c,
 # number (e.g. 1) or a major.minor number (e.g. 1.1).
 version_array = meson.project_version().split('.')
 api_version = '@0@.@1@'.format(version_array[0], version_array[1])
+api_name = '@0@-@1@'.format(meson.project_name(), api_version)
 
 gnome = import('gnome')
 
+# Neither the 'symbol_prefix' nor the 'export_packages' seem to make any
+# difference in the resulting typelib file, but they're present in all the
+# examples I've looked at.
 gnome.generate_gir(libmyhello,
   sources: libmyhello_c + libmyhello_h,
   namespace: 'My',
   nsversion: api_version,
   identifier_prefix: 'My',
+  symbol_prefix: 'my',
+  export_packages: api_name,
   includes: [ 'GObject-2.0' ],
   install: true)
 
