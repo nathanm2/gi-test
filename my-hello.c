@@ -16,15 +16,16 @@ static void my_hello_init(MyHello *self) {}
 
 /**
  * my_hello_new:
+ * @greeting: (not nullable): The greeting.
  *
  * Create a MyHello object.
  *
  * Returns: (transfer full): A MyHello object.
  */
-MyHello *my_hello_new(void)
+MyHello *my_hello_new(const char *greeting)
 {
     MyHello *hello = g_object_new(MY_TYPE_HELLO, NULL);
-    hello->greeting = "Hi";
+    hello->greeting = g_strdup(greeting);
 
     return hello;
 }

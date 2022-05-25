@@ -29,6 +29,7 @@ gnome.generate_gir(libmyhello,
   namespace: 'My',
   nsversion: api_version,
   identifier_prefix: 'My',
+  includes: [ 'GObject-2.0' ],
   install: true)
 
 gi = dependency('gobject-introspection-1.0')

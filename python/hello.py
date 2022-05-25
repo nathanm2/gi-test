@@ -4,3 +4,5 @@ gi.require_version("My", "0.1")
 from gi.repository import My
 
 print("{}".format(My.get_constant()))
+hello = My.Hello.new("Ahoy")
+hello.greet("Nate")
