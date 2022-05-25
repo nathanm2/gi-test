@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[])
 {
-    MyHello *hello = g_object_new(MY_TYPE_HELLO, NULL);
+    MyHello *hello = my_hello_new("Hi");
     my_hello_greet(hello, "Nate");
     g_object_unref(G_OBJECT(hello));
 
