@@ -16,16 +16,15 @@ static void my_hello_init(MyHello *self) {}
 
 /**
  * my_hello_new:
- * @greeting: The greeting
  *
  * Create a MyHello object.
  *
  * Returns: (transfer full): A MyHello object.
  */
-MyHello *my_hello_new(const char *greeting)
+MyHello *my_hello_new(void)
 {
     MyHello *hello = g_object_new(MY_TYPE_HELLO, NULL);
-    hello->greeting = greeting;
+    hello->greeting = "Hi";
 
     return hello;
 }
@@ -33,4 +32,16 @@ MyHello *my_hello_new(const char *greeting)
 void my_hello_greet(MyHello *self, const char *name)
 {
     printf("%s, %s\n", self->greeting, name);
+}
+
+/**
+ * my_get_constant:
+ *
+ * Get a constant.
+ *
+ * Returns: (transfer none): A constant string
+ */
+const char *my_get_constant(void)
+{
+    return "Hello world";
 }
