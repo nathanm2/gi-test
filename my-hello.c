@@ -87,9 +87,22 @@ MyHello *my_hello_new(const char *greeting)
     return hello;
 }
 
-void my_hello_greet(MyHello *self, const char *name)
+void my_hello_greet(MyHello *self, MyTitle title, const char *name)
 {
-    printf("%s, %s\n", self->greeting, name);
+    const char *title_str;
+    switch (title) {
+    case MY_TITLE_DR:
+        title_str = "Dr.";
+        break;
+    case MY_TITLE_MR:
+        title_str = "Mr.";
+        break;
+    default:
+        title_str = "";
+        break;
+    }
+
+    printf("%s, %s %s\n", self->greeting, title_str, name);
 }
 
 /**

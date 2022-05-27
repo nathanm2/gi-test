@@ -5,6 +5,7 @@ from gi.repository import My
 
 print("{}".format(My.get_constant()))
 hello = My.Hello(greeting= "Ahoy")
-hello.greet("Nate")
+
+hello.greet(My.Title.MR, "Nate")
 
 print("{}".format(hello.props.greeting))

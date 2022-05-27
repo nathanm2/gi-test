@@ -3,7 +3,7 @@ project('gi-test', 'c', version: '0.1.1')
 gobject = dependency('gobject-2.0')
 
 libmyhello_c = files('my-hello.c')
-libmyhello_h = files('my-hello.h')
+libmyhello_h = files('my-hello.h', 'my-title.h')
 
 libmyhello = library('myhello',
   libmyhello_c,
@@ -25,6 +25,8 @@ api_name = '@0@-@1@'.format(meson.project_name(), api_version)
 
 gnome = import('gnome')
 
+enums = gnome.mkenums_simple('myenums', sources: ['my-title.h'])
+
 # Neither the 'symbol_prefix' nor the 'export_packages' seem to make any
 # difference in the resulting typelib file, but they're present in all the
 # examples I've looked at.
@@ -41,5 +43,5 @@ gnome.generate_gir(libmyhello,
 gi = dependency('gobject-introspection-1.0')
 
 gir_c = files('gir-test.c')
-executable('gir-test', gir_c,
+executable('gir-test', gir_c, enums,
   dependencies: [gi])
